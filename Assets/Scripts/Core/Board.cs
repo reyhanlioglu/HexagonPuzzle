@@ -25,28 +25,48 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    bool IsWithinBoard(int x, int y)
+    {
+        Debug.LogWarning("X:" + x + "Y:" + y);
+        if ((x % 2 == 0 && y > 0) || (x % 2 != 0 && y > -1))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsValidPosition(Shape shape)
+    {
+
+        if (!IsWithinBoard((int)shape.GetTransform().position.x, (int)shape.GetTransform().position.y))
+        {
+            return false;
+        }
+        return true;
     }
 
     void DrawEmptyCells()
     {
-        if(mEmptySprite != null)
+        if (mEmptySprite != null)
         {
-            for(int y = 0; y<mHeight; y++)
+            for (int y = 0; y < mHeight; y++)
             {
-                for(int x = 0; x<mWeight; x++)
+                for (int x = 0; x < mWeight; x++)
                 {
-                
+
                     Transform clone;
-                    if(x % 2 == 0)
+                    if (x % 2 == 0)
                     {
-                        clone = Instantiate(mEmptySprite, new Vector3(x*2,y*2+1,0), Quaternion.identity) as Transform ;
+                        clone = Instantiate(mEmptySprite, new Vector3(x * 2, y * 2 + 1, 0), Quaternion.identity) as Transform;
                     }
                     else
                     {
-                        clone = Instantiate(mEmptySprite, new Vector3(x*2,y*2,0), Quaternion.identity) as Transform ;
+                        clone = Instantiate(mEmptySprite, new Vector3(x * 2, y * 2, 0), Quaternion.identity) as Transform;
                     }
-                    clone.name = "Board Space ( x = "+ x+ " , y = "+ y+ " )";
+                    clone.name = "Board Space ( x = " + x + " , y = " + y + " )";
                     clone.transform.parent = transform;
                 }
             }

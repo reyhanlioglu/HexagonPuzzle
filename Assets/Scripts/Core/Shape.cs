@@ -5,20 +5,48 @@ using UnityEngine;
 public class Shape : MonoBehaviour
 {
 
-    void MoveDown()
+
+    private SpriteRenderer spriteRenderer;
+
+
+    void Awake()
     {
-        transform.position += new Vector3(0, -1, 0);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+
+    public void MoveUp()
+    {
+        transform.position += new Vector3(0, 2, 0);
+    }
+
+    public void MoveDown()
+    {
+        transform.position += new Vector3(0, -2, 0);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //InvokeRepeating("MoveDown", 0, 0.5f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    public void setColor(Color color)
+    {
+        spriteRenderer.color = color;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+
 }
