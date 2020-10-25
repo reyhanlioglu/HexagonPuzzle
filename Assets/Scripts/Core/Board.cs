@@ -9,11 +9,19 @@ public class Board : MonoBehaviour
     public int mHeight;
     public int mWeight;
 
-    Transform[,] mGrid;
+    int[,] mGrid;
 
     void Avake()
     {
-        mGrid = new Transform[mWeight, mHeight];
+        mGrid = new int[mWeight, mHeight];
+
+        for (int i = 0; i < mWeight; i++)
+        {
+            for (int j = 0; j < mHeight; j++)
+            {
+                mGrid[i, j] = 0;
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -36,6 +44,22 @@ public class Board : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool IsOccupied(int x, int y)
+    {
+        return mGrid[x, y] == 1;
+    }
+
+    public void setAsOccupied(int x, int y)
+    {
+        if (mGrid[x, y] == 1)
+        {
+            Debug.Log("WARNING: (" + x + "," + y + ") is already occupied!");
+            return;
+        }
+
+        mGrid[x, y] = 1;
     }
 
     public bool IsValidPosition(HexagonBlock shape)

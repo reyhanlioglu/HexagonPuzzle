@@ -38,13 +38,13 @@ public class Spawner : MonoBehaviour
 
     }
 
-    public HexagonBlock getRandomShape()
+    public HexagonBlock getRandomShape(int x, int y)
     {
         int randomIndex = Random.Range(0, numberOfColors);
         Debug.Log("RANDOM INDEX " + randomIndex);
 
 
-        GameObject go = Instantiate(hexagonPrefab, transform.position, transform.rotation);
+        GameObject go = Instantiate(hexagonPrefab, new Vector3(x, y, -1), transform.rotation);
 
         Renderer rend = go.GetComponent<Renderer>();
         rend.material.color = colorList[randomIndex];

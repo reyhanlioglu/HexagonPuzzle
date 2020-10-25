@@ -12,6 +12,13 @@ public class GameController : MonoBehaviour
 
     HexagonBlock mActiveShape;
 
+    HexagonBlock[,] hexagonList;
+
+    void Avake()
+    {
+        hexagonList = new HexagonBlock[mGameBoard.mWeight, mGameBoard.mHeight];
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +31,10 @@ public class GameController : MonoBehaviour
 
         if (mSpawner)
         {
-            mActiveShape = mSpawner.getRandomShape();
+            //   mActiveShape = mSpawner.getRandomShape();
             Debug.Log("ACTIVE SHAPE " + mActiveShape);
+
+            FillTheGrid();
         }
 
 
@@ -48,29 +57,53 @@ public class GameController : MonoBehaviour
             return;
         }
 
-
-        if (Time.time > mTimeToDrop)
-        {
-            Debug.Log("TIME");
-
-            mTimeToDrop = Time.time + mDropInterval;
-
-            if (mActiveShape)
-            {
-                Debug.Log("MOVE DOWN");
-
-                mActiveShape.MoveDown();
-
-                if (!mGameBoard.IsValidPosition(mActiveShape))
+        /*
+                if (Time.time > mTimeToDrop)
                 {
-                    mActiveShape.MoveUp();
+                    Debug.Log("TIME");
 
-                    if (mSpawner)
+                    mTimeToDrop = Time.time + mDropInterval;
+
+                    if (mActiveShape)
                     {
-                        mActiveShape = mSpawner.getRandomShape();
+                        Debug.Log("MOVE DOWN");
 
+                        mActiveShape.MoveDown();
+
+                        if (!mGameBoard.IsValidPosition(mActiveShape))
+                        {
+                            mActiveShape.MoveUp();
+
+                            if (mSpawner)
+                            {
+                                mActiveShape = mSpawner.getRandomShape(0, 21);
+
+                            }
+                        }
                     }
                 }
+                */
+    }
+
+
+    void FillTheGrid()
+    {
+        int width = mGameBoard.mWeight;
+        int height = mGameBoard.mHeight;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (i % 2 == 0)
+                {
+                    HexagonBlock hexagon = mSpawner.getRandomShape(2 * i, 2 * j + 1);
+                }
+                else
+                {
+                    HexagonBlock hexagon = mSpawner.getRandomShape(2 * i, 2 * j);
+                }
+
             }
         }
     }
