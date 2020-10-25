@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HexagonBlock : MonoBehaviour
 {
-    public GameObject hexagonBlock;
     public int numberOfColors;
 
 
@@ -28,14 +27,6 @@ public class HexagonBlock : MonoBehaviour
         {
             numberOfColors = 5;
         }
-
-        GameObject go = Instantiate(hexagonBlock, transform.position, transform.rotation);
-
-        int randomIndex = Random.Range(0, numberOfColors);
-        Renderer rend = go.GetComponent<Renderer>();
-        rend.material.color = colorList[randomIndex];
-
-        // Instantiate(hexagonBlock, transform.position, transform.rotation);
     }
 
     // Update is called once per frame
@@ -47,8 +38,7 @@ public class HexagonBlock : MonoBehaviour
 
     void Awake()
     {
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        //  transform.position = new Vector3(0, 21, -1);
+
     }
 
 

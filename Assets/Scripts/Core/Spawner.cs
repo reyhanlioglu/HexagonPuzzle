@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
         rend.material.color = colorList[randomIndex];
 
         HexagonBlock component = go.GetComponent<HexagonBlock>();
-        if (component == null)
+        if (component != null)
         {
             Debug.Log("Component " + component);
         }
