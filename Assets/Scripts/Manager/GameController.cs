@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     float mDropInterval = 0.50f;
     float mTimeToDrop;
 
-    Shape mActiveShape;
+    HexagonBlock mActiveShape;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
         if (mSpawner)
         {
             mActiveShape = mSpawner.getRandomShape();
+            Debug.Log("ACTIVE SHAPE " + mActiveShape);
         }
 
 
@@ -50,11 +51,13 @@ public class GameController : MonoBehaviour
 
         if (Time.time > mTimeToDrop)
         {
+            Debug.Log("TIME");
 
             mTimeToDrop = Time.time + mDropInterval;
 
             if (mActiveShape)
             {
+                Debug.Log("MOVE DOWN");
 
                 mActiveShape.MoveDown();
 
@@ -65,6 +68,7 @@ public class GameController : MonoBehaviour
                     if (mSpawner)
                     {
                         mActiveShape = mSpawner.getRandomShape();
+
                     }
                 }
             }

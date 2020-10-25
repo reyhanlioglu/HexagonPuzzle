@@ -38,7 +38,7 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    public bool IsValidPosition(Shape shape)
+    public bool IsValidPosition(HexagonBlock shape)
     {
 
         if (!IsWithinBoard((int)shape.GetTransform().position.x, (int)shape.GetTransform().position.y))

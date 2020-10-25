@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Shape[] mAllHexagons;
     public int numberOfColors;
+
+    [SerializeField]
+    private GameObject hexagonPrefab;
 
     private Color[] colorList = {
         new Color(255, 0, 0), // Red
@@ -34,25 +36,26 @@ public class Spawner : MonoBehaviour
         }
 
 
-        initHexagons();
-
     }
 
-    void initHexagons()
-    {
-        for (int i = 0; i < numberOfColors; i++)
-        {
-            Shape hexagon = gameObject.AddComponent<Shape>();
-            hexagon.setColor(colorList[i]);
-            mAllHexagons[i] = hexagon;
-        }
-    }
-
-    public Shape getRandomShape()
+    public HexagonBlock getRandomShape()
     {
         int randomIndex = Random.Range(0, numberOfColors);
         Debug.Log("RANDOM INDEX " + randomIndex);
-        return mAllHexagons[randomIndex];
+
+
+        GameObject go = Instantiate(hexagonPrefab, transform.position, transform.rotation);
+
+        Renderer rend = go.GetComponent<Renderer>();
+        rend.material.color = colorList[randomIndex];
+
+        HexagonBlock component = go.GetComponent<HexagonBlock>();
+        if (component == null)
+        {
+            Debug.Log("Component " + component);
+        }
+
+        return component;
     }
 
     // Update is called once per frame

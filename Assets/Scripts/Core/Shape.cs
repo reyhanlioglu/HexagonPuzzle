@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shape : MonoBehaviour
 {
 
+    public GameObject hexagonBlock;
 
     private SpriteRenderer spriteRenderer;
 
@@ -12,6 +13,7 @@ public class Shape : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        transform.position = new Vector3(0, 21, -1);
     }
 
 
@@ -29,6 +31,7 @@ public class Shape : MonoBehaviour
     void Start()
     {
         //InvokeRepeating("MoveDown", 0, 0.5f);
+
 
     }
 
