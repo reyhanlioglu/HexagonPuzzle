@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
     public HexagonBlock getRandomShape(int x, int y)
     {
         int randomIndex = Random.Range(0, numberOfColors);
-        Debug.Log("RANDOM INDEX " + randomIndex);
+        // Debug.Log("RANDOM INDEX " + randomIndex);
 
 
         GameObject go = Instantiate(hexagonPrefab, new Vector3(x, y, -1), transform.rotation);
@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour
         HexagonBlock component = go.GetComponent<HexagonBlock>();
         if (component != null)
         {
-            Debug.Log("Component " + component);
+            //  Debug.Log("Component " + component);
         }
 
         return component;
